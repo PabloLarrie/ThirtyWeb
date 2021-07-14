@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  thirty_api:
+    build:
+      context: .
+    image: thirty_api
+    container_name: thirty_api
+    volumes: 
+      - .:/app
+    ports: 
+      - "8880:8000"
+    env_file:
+      - ./settings.env
+    depends_on:
+      - postgres
+
+#  frontend:
+#    build:
+#      context: ./frontend
+#    image: hsdecker_frontend
+#    container_name: frontend
+#    volumes:
+#      - ./frontend:/app
+#    ports:
+#      - "8080:8080"
+
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./settings.env
+
+
+
